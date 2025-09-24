@@ -12,11 +12,17 @@ export default function Home() {
   const proyectos = [1, 2, 3, 4, 5];
   const testimonios = [1, 2, 3, 4];
 
-  const next = (setFn: any, arrLength: number) =>
-    setFn((prev: number) => (prev + 1) % arrLength);
+  // ✅ Tipado correcto para evitar `any`
+  const next = (
+    setFn: React.Dispatch<React.SetStateAction<number>>,
+    arrLength: number
+  ) => setFn((prev) => (prev + 1) % arrLength);
 
-  const prev = (setFn: any, arrLength: number) =>
-    setFn((prev: number) => (prev === 0 ? arrLength - 1 : prev - 1));
+  const prev = (
+    setFn: React.Dispatch<React.SetStateAction<number>>,
+    arrLength: number
+  ) =>
+    setFn((prev) => (prev === 0 ? arrLength - 1 : prev - 1));
 
   return (
     <main className="bg-black text-white font-[Poppins] selection:bg-green-500/30">
